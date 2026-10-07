@@ -1,0 +1,510 @@
+{
+  "capstone_projects": [
+    {
+      "title": "Smart Driver Monitor (Driver Monitoring System)",
+      "category": "Edge AI & Computer Vision",
+      "source": "ITAC",
+      "reference": "ITAC GP2026.R21.90 (Benha University); alternative GP2025.R20.230 (Cairo University)",
+      "description": "An edge-AI computer vision system running on a Raspberry Pi 4 that analyzes the driver's facial landmarks to detect fatigue, distraction and unsafe postures in real time, sounds an in-cabin alarm and reports events to a fleet dashboard.",
+      "hardware_components": "Raspberry Pi 4, Infrared (IR) PiCam, 5V active buzzer, OLED display",
+      "team_tracks": [
+        "Edge AI Engineer: Trains and quantizes CNN models for embedded CPU inference.",
+        "Embedded Systems Engineer: Sets up Linux environment and GPIO hardware actuators.",
+        "Computer Vision Engineer: Implements MediaPipe/OpenCV pipelines for facial landmark geometry.",
+        "Backend IoT Developer: Configures MQTT brokers and FastAPI data ingestion.",
+        "Frontend Developer: Builds the React telematics dashboard for live tracking."
+      ],
+      "potential_risks": "False positive alerts caused by dynamic facial morphology changes or severe illumination drops during night driving. The Raspberry Pi CPU may limit the frame rate, so models must be quantized and kept small",
+      "added_contribution": "Offline-resilient fleet telematics architecture combined with an adaptive dynamic baseline calibration for individual driver eye geometry.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Set up the environment and benchmark the public driver datasets (NTHU-DDD and State Farm Distracted Driver).",
+        "Phase 2 (Months 4–6): Develop facial landmark geometry logic and quantize classification models.",
+        "Phase 3 (Months 7–9): Assemble hardware components and test local actuation latency.",
+        "Phase 4 (Months 10–12): Integrate cloud telemetry and conduct in-vehicle field testing."
+      ]
+    },
+    {
+      "title": "Road Guard (Wild Alert): Highway Hazard Detection",
+      "category": "Edge AI & Computer Vision",
+      "source": "Big Ideas",
+      "reference": "Big Ideas ID 110 (Wild Alert: YOLO for road safety)",
+      "description": "A real-time dashcam computer vision pipeline that detects sudden road hazards and large animals (stray camels, livestock) on unlit desert and agricultural highways, estimates how fast the object is approaching, triggers an instant driver alarm and streams incident data to a cloud dashboard.",
+      "hardware_components": "Raspberry Pi 4 Model B (4GB), standard 1080p USB camera or Pi Camera (~650 EGP)",
+      "team_tracks": [
+        "Deep Learning Engineer: Trains YOLO object detection models on large mammal datasets.",
+        "Edge Optimization Lead: Converts models to ONNX/TFLite for low-latency inference.",
+        "Embedded Linux Engineer: Handles camera streams and system runtime stability.",
+        "Backend/Telemetry Developer: Builds the incident reporting API.",
+        "Data Analyst: Develops statistical dashboards for road security personnel."
+      ],
+      "potential_risks": "Motion blur at high vehicle speeds and low visibility during night driving causing missed detections. Development can start on a laptop webcam, but the Raspberry Pi frame rate must be verified early",
+      "added_contribution": "Instantaneous bounding-box expansion calculation to estimate time-to-collision and trigger preemptive alarms.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download the public datasets (OpenImages large-mammal subset and the Kaggle Highway Animal Detection benchmark) and merge them into one training set.",
+        "Phase 2 (Months 4–6): Train the YOLO detection model and optimize for edge hardware.",
+        "Phase 3 (Months 7–9): Wire in-cabin alerting hardware and integrate inference engine.",
+        "Phase 4 (Months 10–12): Deploy the reporting dashboard and perform physical road tests."
+      ]
+    },
+    {
+      "title": "Mute Motion: Driver Assistance for Deaf Drivers",
+      "category": "Edge AI & Computer Vision",
+      "source": "ITAC",
+      "reference": "ITAC GP2024.R19.14 (Zagazig University)",
+      "description": "An in-car edge system that listens for emergency sirens and car horns through a microphone, classifies them with an audio deep learning model, and shows a clear visual alert so deaf or hard-of-hearing drivers do not miss them.",
+      "hardware_components": "Raspberry Pi 4, USB microphone, small LCD or OLED display, LED warning indicator",
+      "team_tracks": [
+        "Audio ML Engineer: Converts audio to Mel-spectrograms and trains the siren and horn classifier on UrbanSound8K.",
+        "Signal Processing Engineer: Builds noise filtering and the sliding-window real-time audio pipeline.",
+        "Embedded Linux Engineer: Sets up the Raspberry Pi, microphone capture and lightweight model deployment (TFLite or ONNX).",
+        "HMI Developer: Designs dashboard visual alerts (icons, colours, flashing patterns) that are readable at a glance while driving.",
+        "QA & Data Augmentation Engineer: Mixes public noise clips into training data and runs in-car tests."
+      ],
+      "potential_risks": "Engine, wind and music noise inside the cabin can mask or imitate siren sounds, so real-world accuracy may fall well below dataset accuracy. One microphone cannot tell which direction a siren comes from. A missed or late alert is a safety issue.",
+      "added_contribution": "Cabin-noise-aware training (augmenting UrbanSound8K with public environmental-noise clips such as ESC-50) and an urgency-aware visual alert that shows the sound type (siren or horn) with a persistence timer instead of one generic flashing light.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Set up the Pi and microphone, download UrbanSound8K and extract the siren, car_horn and background classes.",
+        "Phase 2 (Months 4–6): Train and evaluate the Mel-spectrogram CNN, then add noise augmentation and convert the model to a lightweight format.",
+        "Phase 3 (Months 7–9): Build the real-time sliding-window pipeline and the visual alert display, and measure end-to-end latency.",
+        "Phase 4 (Months 10–12): Install in a car for road tests, tune thresholds to reduce false alarms and write the final report."
+      ]
+    },
+    {
+      "title": "PlantPal: Smart Plant Species & Leaf Health Assistant",
+      "category": "Edge AI & Computer Vision",
+      "source": "Big Ideas",
+      "reference": "Big Ideas ID 198 (PlantPal)",
+      "description": "A mobile app that identifies a plant's species from a leaf photo, diagnoses visible leaf diseases, and builds a watering and care schedule with reminder notifications.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Deep Learning Engineer: Fine-tunes MobileNetV3 or EfficientNet-B0 on PlantVillage and Oxford 102 Flowers using transfer learning.",
+        "Computer Vision Engineer: Handles image preprocessing, background removal and test-time augmentation for phone photos.",
+        "Mobile App Developer: Builds the Flutter app with camera capture, results screen and notifications.",
+        "Backend Developer: Builds the FastAPI service, the plant care knowledge base and the reminder scheduler.",
+        "QA & Explainability Engineer: Adds Grad-CAM heat maps and tests the model on real phone photos from outside the datasets."
+      ],
+      "potential_risks": "PlantVillage photos are lab-style leaves on plain backgrounds, so accuracy on real phone photos can drop sharply. The two datasets cover different plants, so species identification and disease diagnosis need separate models. Care schedules need a trusted source of plant-care rules.",
+      "added_contribution": "A care calendar that adapts watering reminders to the local weather forecast from a free weather API, plus Grad-CAM highlights that show which part of the leaf drove the diagnosis. The model runs on-device (TFLite), so it also works offline.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download PlantVillage (54,306 images, 38 classes) and the Oxford 102 Flower dataset and build the training pipeline.",
+        "Phase 2 (Months 4–6): Train, evaluate and compress the species and disease models, then add Grad-CAM explanations.",
+        "Phase 3 (Months 7–9): Build the care knowledge base, the scheduler and the weather-adaptive reminder logic.",
+        "Phase 4 (Months 10–12): Build the mobile app, test on real phone photos and publish the final build."
+      ]
+    },
+    {
+      "title": "Plant Disease Detection using Deep Learning and Explainable AI (XAI)",
+      "category": "Edge AI & Computer Vision",
+      "source": "ITAC",
+      "reference": "ITAC GP2025.R20.91 (AAST - Arab Academy for Science, Technology and Maritime Transport)",
+      "description": "A low-cost field device built around the ESP32-CAM that photographs crop leaves and sends them to a server, where a deep learning model diagnoses the disease. Explainable AI heat maps show farmers why the model reached its decision.",
+      "hardware_components": "ESP32-CAM module (kit under 500 EGP), FTDI USB-to-serial programmer, 5V power bank",
+      "team_tracks": [
+        "Deep Learning Engineer: Trains the disease classifier on PlantVillage (54,000+ images, 38 classes) using transfer learning.",
+        "XAI Engineer: Implements Grad-CAM and LIME explanations and checks that they highlight real lesions.",
+        "Embedded Engineer: Programs the ESP32-CAM firmware for image capture, Wi-Fi upload and deep sleep to save power.",
+        "Backend Developer: Builds the inference API and result storage.",
+        "Frontend Developer: Builds the farmer dashboard that shows the diagnosis, the heat map and treatment advice."
+      ],
+      "potential_risks": "The ESP32-CAM cannot run a full CNN, so inference has to happen on a server or phone and the device depends on Wi-Fi coverage in the field. Its camera gives lower-quality images than the dataset photos, and PlantVillage is lab-style, so field accuracy may drop.",
+      "added_contribution": "Explainability built into the pipeline: every diagnosis comes with a heat map and a confidence score, and low-confidence results are flagged as uncertain instead of guessed, so a farmer can see whether the model looked at the lesion or at the background.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download PlantVillage and train a baseline classifier with transfer learning.",
+        "Phase 2 (Months 4–6): Add Grad-CAM and LIME explanations and a confidence threshold for uncertain results.",
+        "Phase 3 (Months 7–9): Program the ESP32-CAM firmware and connect it to the inference API and dashboard.",
+        "Phase 4 (Months 10–12): Test the device on real plants, compare against dataset accuracy and write the final report."
+      ]
+    },
+    {
+      "title": "Mateen (SmartCoach): Gym Equipment Identifier & Workout Assistant",
+      "category": "Edge AI & Computer Vision",
+      "source": "Big Ideas",
+      "reference": "Big Ideas ID 299 (Mateen)",
+      "description": "A mobile computer vision app (Flutter front end, Python FastAPI back end) that identifies gym machines and free weights in real time, shows safety instructions and uses skeletal pose estimation to track repetition form.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Deep Learning Engineer: Trains object detection models for gym equipment.",
+        "Pose Estimation Engineer: Calculates joint angles from MediaPipe Pose landmarks to count repetitions and check form.",
+        "Mobile Developer: Integrates live camera feeds into a cross-platform app.",
+        "Backend Developer: Manages workout profiles and video tutorial databases.",
+        "QA & Testing Lead: Conducts live environment testing and handles deployment."
+      ],
+      "potential_risks": "Occlusion of body parts by gym equipment and complex visual clutter in background environments.",
+      "added_contribution": "Real-time biomechanical angle calculation to actively prevent workout injuries and correct form.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download and merge the public datasets (Kaggle Gym Equipment Classification and Roboflow Universe gym detection sets).",
+        "Phase 2 (Months 4–6): Develop the equipment identification pipeline.",
+        "Phase 3 (Months 7–9): Implement pose estimation geometry for form tracking.",
+        "Phase 4 (Months 10–12): Integrate the UI and conduct user acceptance testing in physical gyms."
+      ]
+    },
+    {
+      "title": "Smart Vision: Intelligent Attendance System with Anti-Spoofing",
+      "category": "Edge AI & Computer Vision",
+      "source": "ITAC",
+      "reference": "ITAC GP2026.R21.347 (King Salman International University)",
+      "description": "An automated classroom attendance system that uses face recognition on existing network IP cameras or webcams, combined with a liveness detection engine that blocks photo, screen and mask spoofing attempts.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Face Detection Engineer: Manages multi-face extraction and geometric alignment.",
+        "Security AI Engineer: Trains liveness models for passive anti-spoofing.",
+        "Metric Learning Architect: Configures vector embeddings and nearest-neighbor search.",
+        "Backend Systems Engineer: Builds the attendance ledger and API.",
+        "Frontend Developer: Creates the instructor reporting dashboard."
+      ],
+      "potential_risks": "Spoofing attempts utilizing high-resolution digital screens, masks, or printed photographs.",
+      "added_contribution": "Implementation of frequency domain analysis to detect digital screen moiré patterns for robust anti-spoofing verification.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Implement face alignment and bounding box extraction.",
+        "Phase 2 (Months 4–6): Generate facial vector embeddings and set up the indexing database.",
+        "Phase 3 (Months 7–9): Train liveness detection models on the public spoofing benchmarks (CelebA-Spoof or LCC FASD).",
+        "Phase 4 (Months 10–12): Connect the backend ledger to the frontend dashboard and optimize streaming latency."
+      ]
+    },
+    {
+      "title": "SnapFinder: Semantic Photo Search with Text and Voice",
+      "category": "Edge AI & Computer Vision",
+      "source": "Big Ideas",
+      "reference": "Big Ideas ID 203 (Search assistant for images)",
+      "description": "A visual retrieval system that lets users search a photo library with natural language or voice queries, with no manual tagging. It computes multimodal vector embeddings for every photo and searches them in an indexed vector space.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "ML Embedding Engineer: Runs the CLIP image and text encoders and benchmarks retrieval quality on COCO 2017 validation and Flickr30k.",
+        "Vector Database Engineer: Builds the Faiss, Qdrant or Milvus index and tunes approximate nearest-neighbour search.",
+        "Speech & Language Engineer: Adds voice queries (speech-to-text) and Arabic query support through translation or a multilingual CLIP model.",
+        "Backend Developer: Builds the FastAPI service for indexing and search endpoints.",
+        "Frontend Developer: Builds the web or mobile gallery with search bar, results grid and relevance feedback."
+      ],
+      "potential_risks": "CLIP understands Arabic poorly without a multilingual model or a translation step. Indexing large photo libraries is slow on student laptops without a GPU. Benchmark photos differ from personal photos, and abstract or counting queries can return wrong results.",
+      "added_contribution": "Hybrid search that combines CLIP similarity with photo metadata filters (date and location), so a query such as 'beach last summer' is split into a semantic part and a filter part, together with voice and Arabic input.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Set up CLIP and benchmark retrieval on COCO 2017 validation, Flickr30k and CIFAR-100.",
+        "Phase 2 (Months 4–6): Build the vector index, tune search speed and add metadata filtering.",
+        "Phase 3 (Months 7–9): Add voice and Arabic query support and the search API.",
+        "Phase 4 (Months 10–12): Build the gallery interface, run user tests and write the final report."
+      ]
+    },
+    {
+      "title": "Snap & Translate: Real-Time Object and Text Translation",
+      "category": "Edge AI & Computer Vision",
+      "source": "Big Ideas",
+      "reference": "Big Ideas ID 161 (Camera translation)",
+      "description": "A smartphone assistant that points the camera at a scene, detects objects and printed text, and overlays instant Arabic and English translations with short descriptions.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Object Detection Engineer: Trains or fine-tunes a lightweight YOLO or SSD model on the 80 MS COCO classes and exports it to TFLite.",
+        "OCR Engineer: Integrates scene-text OCR (ML Kit or PaddleOCR) for English and Arabic text.",
+        "Translation & NLP Engineer: Runs quantized Opus-MT translation models offline and builds the object-name dictionary with short descriptions.",
+        "Mobile Developer: Builds the camera pipeline and live overlay with correct right-to-left Arabic rendering.",
+        "QA & Performance Engineer: Benchmarks frame rate, battery use and latency on low-end phones."
+      ],
+      "potential_risks": "Running detection, OCR and translation together may be too slow on low-end phones. Arabic overlays need right-to-left text shaping that is easy to get wrong. COCO has only 80 classes, so many everyday objects will not be recognized.",
+      "added_contribution": "Temporal tracking across frames: a label stays steady on an object instead of flickering, and translation runs once per tracked object instead of every frame. An offline mode uses quantized on-device models.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Set up the mobile project and run COCO object detection on the phone camera.",
+        "Phase 2 (Months 4–6): Add scene-text OCR and the offline Opus-MT translation models.",
+        "Phase 3 (Months 7–9): Add object tracking, the overlay interface and performance optimization.",
+        "Phase 4 (Months 10–12): Test on several phones, fix latency and battery issues and write the final report."
+      ]
+    },
+    {
+      "title": "S2S: Arabic Sign Language Translator",
+      "category": "Edge AI & Computer Vision",
+      "source": "ITAC",
+      "reference": "ITAC GP2026.R21.171 (Delta Technological University)",
+      "description": "A mobile app with a cloud back end that recognizes Arabic Sign Language gestures from the camera and converts them into text and speech, and converts typed Arabic text back into sign images so hearing users can communicate with deaf users.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Computer Vision Engineer: Extracts hand landmarks with MediaPipe Hands and normalizes them for the classifier.",
+        "Deep Learning Engineer: Trains the gesture classifier on ArSL2018 and, if time allows, a sequence model for motion-based signs.",
+        "Arabic NLP Engineer: Builds spelling correction and word suggestion that turn recognized letters into words, plus text-to-speech.",
+        "Backend Developer: Builds the cloud inference API with live streaming.",
+        "Mobile Developer: Builds the camera interface, the text and speech output and the text-to-sign display."
+      ],
+      "potential_risks": "ArSL2018 contains static letter images only, so it supports fingerspelling but not full signed sentences or motion-based signs. Models trained on it may struggle with different hands, lighting and backgrounds. Adding real sign vocabulary needs another public dataset and extra scope.",
+      "added_contribution": "Fingerspelling recognition with an Arabic language model on top: recognized letters are corrected and completed into words in real time, which makes a static-image dataset useful for practical communication.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download ArSL2018, extract hand landmarks and build the preprocessing pipeline.",
+        "Phase 2 (Months 4–6): Train and evaluate the letter classifier and tune it for different hands and lighting.",
+        "Phase 3 (Months 7–9): Add the Arabic spelling correction, word suggestion and text-to-speech.",
+        "Phase 4 (Months 10–12): Build the mobile app and the text-to-sign view, then run live translation tests."
+      ]
+    },
+    {
+      "title": "Safe Exam Browser using AI Proctoring",
+      "category": "Edge AI & Computer Vision",
+      "source": "ITAC",
+      "reference": "ITAC GP2024.R19.321 (Mansoura University)",
+      "description": "An academic integrity desktop client that combines operating-system kiosk lockdown with local multi-modal AI (face landmarks, gaze estimation, object and audio detection) to monitor remote exams using only a standard webcam and microphone.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Desktop Security Lead: Implements OS sandboxing and shortcut blocking.",
+        "Vision Engineer: Integrates head pose and gaze vector tracking.",
+        "Object Detection Engineer: Deploys lightweight models to detect unauthorized devices.",
+        "Acoustic DSP Engineer: Implements voice activity detection for ambient noise.",
+        "Full-Stack Architect: Builds the telemetry backend and instructor review portal."
+      ],
+      "potential_risks": "High false-positive flagging rates penalizing students for natural body movements or irrelevant background noises.",
+      "added_contribution": "A multi-modal temporal risk fusion engine utilizing exponential moving averages to suppress momentary tracking glitches.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Build the desktop shell isolation to block external applications.",
+        "Phase 2 (Months 4–6): Integrate on-device gaze, posture, and object detection AI.",
+        "Phase 3 (Months 7–9): Develop the audio analysis and temporal risk fusion algorithms.",
+        "Phase 4 (Months 10–12): Deploy the secure telemetry pipeline and live instructor dashboard."
+      ]
+    },
+    {
+      "title": "Automated Handwritten Exam Correction System",
+      "category": "Edge AI & Computer Vision",
+      "source": "ITAC",
+      "reference": "ITAC GP2026.R21.71 (Delta University for Science and Technology)",
+      "description": "A system that takes scanned or photographed handwritten exam sheets, reads the student answers with handwriting recognition and grades them automatically against the instructor's answer key.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Document Image Engineer: Builds preprocessing (deskew, binarization) and detects the answer regions on the page.",
+        "Handwriting Recognition Engineer: Fine-tunes or applies TrOCR using the IAM (English) and KHATT (Arabic) datasets.",
+        "Grading Logic Engineer: Matches answers to the key using exact match for multiple choice and numbers and semantic similarity for short answers.",
+        "Backend Developer: Builds upload, batch processing and results storage.",
+        "Frontend Developer: Builds the instructor review screen showing the scanned answer, the recognized text and the score."
+      ],
+      "potential_risks": "Handwriting recognition errors, especially on Arabic cursive, turn directly into wrong grades. Grading long free-text answers is a research problem, so the scope must stay limited to multiple choice, short answers and numbers. Exam sheet layouts vary between instructors.",
+      "added_contribution": "A confidence-based review queue: answers with low recognition or matching confidence are flagged for the instructor instead of being graded silently, which keeps results trustworthy while still saving most of the marking time.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download IAM and KHATT and build the page preprocessing and answer-region detection.",
+        "Phase 2 (Months 4–6): Fine-tune the handwriting recognition model and measure error rates.",
+        "Phase 3 (Months 7–9): Build the grading logic with similarity scoring and the confidence flagging rules.",
+        "Phase 4 (Months 10–12): Build the instructor interface, test on sample exam sheets and write the final report."
+      ]
+    },
+    {
+      "title": "AI-Enhanced System for Design Excellence: Intelligent Color Selection and Recoloring",
+      "category": "Edge AI & Computer Vision",
+      "source": "ITAC",
+      "reference": "ITAC GP2025.R20.65 (Zagazig University)",
+      "description": "A generative AI system that intelligently recolors interior design elements while preserving lighting, textures, and shadows.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Vision Engineer: Implements zero-shot object segmentation models.",
+        "Generative AI Lead: Fine-tunes conditional generative networks and diffusion models.",
+        "Backend Systems Architect: Manages asynchronous GPU cloud processing queues.",
+        "Frontend Developer: Builds the interactive drag-and-drop web canvas.",
+        "QA & Color Theory Integrator: Tests aesthetic outputs and logic constraints."
+      ],
+      "potential_risks": "High cloud computing costs during GPU inference and unacceptable latency times in generating images. Training and inference should use smaller models and free Colab or Kaggle GPUs to keep costs low",
+      "added_contribution": "Preserving photorealistic environment lighting and shadows during semantic color swaps instead of applying flat color tints.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Implement zero-shot object segmentation pipelines.",
+        "Phase 2 (Months 4–6): Fine-tune conditional generative networks for color transfer using public image pairs (DeepFashion or open interior-design datasets).",
+        "Phase 3 (Months 7–9): Develop asynchronous processing queues for the backend.",
+        "Phase 4 (Months 10–12): Construct the interactive frontend and conduct user testing."
+      ]
+    },
+    {
+      "title": "Tibyan: Arabic Fake News Detector",
+      "category": "Applied NLP & Speech",
+      "source": "Big Ideas",
+      "reference": "Big Ideas ID 253 (Tibyan)",
+      "description": "An NLP engine that verifies Arabic news articles and social media claims using machine learning to combat digital misinformation.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Data Engineer: Cleans, merges and balances the public corpora (AraNews, AFND and the Baly Credibility Corpus).",
+        "NLP Architect: Fine-tunes transformer models for Arabic text classification.",
+        "Semantic Search Engineer: Manages vector embeddings for claim matching.",
+        "Backend API Developer: Connects the machine learning models to the web endpoints.",
+        "Frontend UI Developer: Builds the user-facing verification dashboard or browser extension."
+      ],
+      "potential_risks": "The rapid evolution of fake news terminology and a scarcity of high-quality labeled Arabic datasets.",
+      "added_contribution": "Multi-feature credibility analysis combining stylistic text evaluation with semantic source retrieval.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download and preprocess the public Arabic fake-news corpora (AraNews, AFND and Baly Credibility Corpus).",
+        "Phase 2 (Months 4–6): Fine-tune Arabic transformer architectures for text classification.",
+        "Phase 3 (Months 7–9): Implement the claim retrieval and semantic similarity scoring pipeline.",
+        "Phase 4 (Months 10–12): Deploy the web verification portal for public access."
+      ]
+    },
+    {
+      "title": "Samaa: Quran Recitation Practice with Speech Processing",
+      "category": "Applied NLP & Speech",
+      "source": "Big Ideas",
+      "reference": "Big Ideas ID 319 (Samaa)",
+      "description": "A speech-processing system that listens to a person reciting Quran verses, compares the recitation with the expected text of the verse and highlights words that were mispronounced or skipped.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Speech ML Engineer: Fine-tunes a Wav2Vec2 Arabic model with CTC loss on the Tarteel and EveryAyah datasets.",
+        "Audio DSP Engineer: Builds Mel-spectrogram features, noise reduction and voice activity detection.",
+        "Alignment & Scoring Engineer: Aligns recognized text to the expected verse and computes word-level error scores.",
+        "Backend Developer: Builds the streaming recognition service (WebSocket) and verse database from Tanzil.",
+        "Web/Mobile Developer: Builds the recitation screen that highlights errors live."
+      ],
+      "potential_risks": "Moderate to hard: fine-tuning speech models needs GPU time that free Colab or Kaggle tiers may not provide. Tajweed rules (elongation, nasalization) go beyond phoneme matching. Accuracy may drop for children and strong accents. Religious content should be reviewed by a qualified scholar before release.",
+      "added_contribution": "Verse-constrained recognition: because the expected text is known, decoding is biased towards the target verse (forced alignment), giving word-level feedback in real time instead of open-ended transcription.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download Tarteel, Tanzil and EveryAyah data and build the audio preprocessing pipeline.",
+        "Phase 2 (Months 4–6): Fine-tune and evaluate the Arabic speech recognition model.",
+        "Phase 3 (Months 7–9): Build the verse alignment and word-level error scoring.",
+        "Phase 4 (Months 10–12): Build the recitation interface, test with volunteers and write the final report."
+      ]
+    },
+    {
+      "title": "EmoAlert: Speech Emotion Recognition Assistant",
+      "category": "Applied NLP & Speech",
+      "source": "Big Ideas",
+      "reference": "Big Ideas ID 202 (EmoAlert)",
+      "description": "A voice-monitoring tool that analyzes speech in real time for acoustic signs of stress and anger (pitch jitter, harmonic energy, speaking rate) and gives a de-escalation alert to the speaker or a supervisor. It uses a laptop or headset microphone.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Audio Feature Engineer: Extracts MFCC, chroma and spectral contrast features with librosa.",
+        "ML Engineer: Trains a 1D-CNN or LSTM classifier on RAVDESS, CREMA-D, TESS and an open Arabic emotion dataset.",
+        "Real-Time Pipeline Engineer: Builds streaming audio buffers, windowing and smoothing.",
+        "Backend Developer: Stores sessions and exposes the API.",
+        "Frontend Developer: Builds the live dashboard with an emotion timeline and alerts."
+      ],
+      "potential_risks": "The datasets contain acted emotions, mostly in English, so accuracy on natural Arabic speech may be much lower. Models trained on one dataset often fail on another. Recording voices raises privacy and consent concerns, so processing should stay on the local device.",
+      "added_contribution": "Per-speaker baseline normalization plus time-window smoothing: an alert fires only when stress features rise well above that speaker's own calm baseline for several seconds, rather than reacting to a single loud word.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download the public emotion datasets and build the feature extraction pipeline.",
+        "Phase 2 (Months 4–6): Train and compare the classifiers, including cross-dataset tests.",
+        "Phase 3 (Months 7–9): Build the real-time pipeline with baseline normalization and alert rules.",
+        "Phase 4 (Months 10–12): Build the dashboard, test with volunteers and write the final report."
+      ]
+    },
+    {
+      "title": "MedSmart / MedWallet: Medication Safety & Drug Interaction Checker",
+      "category": "Document AI & Healthcare",
+      "source": "Big Ideas",
+      "reference": "Big Ideas IDs 109, 214 and 300 (Pharmacy companion, Smart medicine system, MedWallet)",
+      "description": "A mobile health app that identifies medicines by barcode or package photo, keeps a personal medication list with reminders, and checks the list against a clinical interaction graph to warn about conflicting ingredients and harmful drug-drug interactions.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Computer Vision Engineer: Develops OCR and barcode parsing pipelines.",
+        "NLP Data Engineer: Builds the interaction graph from OpenFDA NDC, DrugBank Open Data and RxNorm and handles fuzzy name matching.",
+        "Mobile Application Developer: Builds the cross-platform application interface.",
+        "Backend Database Architect: Designs the medication ledger and user profiles.",
+        "Systems Integrator: Manages API communication and health data security."
+      ],
+      "potential_risks": "Misidentifying medication names due to poor camera focus or reading complex Arabic prescription fonts. Egyptian brand names are not listed in OpenFDA, so a brand-to-active-ingredient mapping is needed. The app is an aid and must show clear medical disclaimers",
+      "added_contribution": "Automated contraindication alerts that cross-reference user intake with clinical APIs to prevent harmful chemical interactions.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download and clean the open drug datasets (OpenFDA NDC Directory, DrugBank Open Data and RxNorm).",
+        "Phase 2 (Months 4–6): Implement image text extraction and fuzzy string matching.",
+        "Phase 3 (Months 7–9): Build the contraindication logic and medication reminder scheduler.",
+        "Phase 4 (Months 10–12): Develop the mobile user interface and perform accessibility testing."
+      ]
+    },
+    {
+      "title": "Roshetta: Handwritten Prescription Reader (OCR)",
+      "category": "Document AI & Healthcare",
+      "source": "ITAC",
+      "reference": "ITAC GP2021.R16.49 (Alexandria University)",
+      "description": "A mobile app that photographs a doctor's handwritten prescription, reads it with a Transformer-based OCR model and returns a clear typed list of drug names, doses and instructions.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Deep Learning Engineer: Fine-tunes TrOCR on synthetic cursive handwriting and public handwriting datasets.",
+        "Synthetic Data Engineer: Generates prescription-style images by rendering drug names in many handwriting fonts with noise and blur, so no real patient data is needed.",
+        "Medical NLP Engineer: Matches OCR output to an open drug-name database with fuzzy matching and extracts dose and frequency with rules.",
+        "Mobile Developer: Builds the camera capture, cropping and results screens.",
+        "Backend & Security Engineer: Builds model serving, the API and privacy protection for uploaded images."
+      ],
+      "potential_risks": "Doctors' handwriting is extremely irregular, and models trained on synthetic data usually degrade on real prescriptions. A misread drug name or dose is a patient-safety risk, so the app must show confidence and ask the user to confirm. Real prescriptions cannot be collected because of privacy rules.",
+      "added_contribution": "Lexicon-constrained decoding: every OCR result is snapped to the closest valid drug name in an open drug database and shown with a confidence score, and uncertain words are highlighted for the user to confirm instead of being guessed.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Build the synthetic prescription generator and the open drug-name lexicon.",
+        "Phase 2 (Months 4–6): Fine-tune TrOCR and measure accuracy on held-out synthetic and public handwriting samples.",
+        "Phase 3 (Months 7–9): Add lexicon matching, dose extraction and the confidence flagging.",
+        "Phase 4 (Months 10–12): Build the mobile app, test with sample handwriting and write the final report."
+      ]
+    },
+    {
+      "title": "Adrk: Receipt Scanning & Smart Spending Analytics",
+      "category": "Document AI & Healthcare",
+      "source": "Big Ideas",
+      "reference": "Big Ideas IDs 227 and 308 (Expense tracking, Adrk)",
+      "description": "A financial tracker that reads photographed store receipts with OCR, extracts the store, date, itemized purchases and tax, categorizes spending and produces predictive monthly expense reports.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "OCR Engineer: Uses PaddleOCR or TrOCR to read receipts and handle rotation and low image quality.",
+        "Information Extraction Engineer: Fine-tunes LayoutLM on SROIE and CORD to extract store, date, items, totals and tax.",
+        "Data Scientist: Builds spending categorization and expense forecasting (Prophet or ARIMA).",
+        "Backend Developer: Builds the API, database and report generation.",
+        "Mobile App Developer: Builds the scan screen, the correction screen and the reports."
+      ],
+      "potential_risks": "SROIE and CORD contain English and Indonesian receipts, so Arabic or Egyptian receipts need extra handling and may fail. No public personal-spending datasets exist, so forecasting must be tested on synthetic or open retail transaction data. OCR quality drops on crumpled thermal paper.",
+      "added_contribution": "An end-to-end pipeline from photo to forecast: itemized extraction, automatic categorization and a predictive monthly report, with a correction screen whose edits are logged to measure and improve accuracy.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download SROIE and CORD and build the OCR pipeline with image cleanup.",
+        "Phase 2 (Months 4–6): Fine-tune the field extraction model and evaluate on the benchmarks.",
+        "Phase 3 (Months 7–9): Build categorization and forecasting on synthetic and open transaction data.",
+        "Phase 4 (Months 10–12): Build the mobile app and reports, test with real receipts and write the final report."
+      ]
+    },
+    {
+      "title": "Auto-Alert: Car Crash Detection & Telematics",
+      "category": "Embedded IoT & Telematics",
+      "source": "Big Ideas",
+      "reference": "Big Ideas ID 225 (Real-time car crash notification)",
+      "description": "An in-vehicle embedded safety unit that uses an inertial sensor to detect severe impact forces and rollovers, then automatically sends an emergency SMS with GPS coordinates and reports the event to a cloud dashboard.",
+      "hardware_components": "ESP32 NodeMCU (~180-240 EGP), MPU6050 accelerometer and gyroscope (~60-90 EGP), GY-NEO6MV2 GPS module (~320-380 EGP), SIM800L GSM module (~280-350 EGP), estimated total ~840-1060 EGP",
+      "team_tracks": [
+        "Embedded C++ Developer: Programs the sensor interfacing and data polling.",
+        "Algorithm Engineer: Designs the kinematic threshold filters for impact detection.",
+        "Hardware Assembly Lead: Manages circuit wiring, power regulation, and physical enclosure.",
+        "Cloud Backend Engineer: Builds the webhook receivers for emergency broadcasts.",
+        "Mobile/Web Dashboard Developer: Creates the interface for emergency responders."
+      ],
+      "potential_risks": "False positive alerts triggered by sudden braking or speed bumps rather than actual collisions. The SIM800L is 2G-only, so it depends on the operator still supporting 2G, and it needs a stable supply that handles current spikes",
+      "added_contribution": "Multi-axis sensor fusion filtering designed to distinguish non-critical driving anomalies from life-threatening rollovers.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Procure hardware components and conduct individual module testing.",
+        "Phase 2 (Months 4–6): Log IMU data and calibrate the impact thresholds using public crash accelerometer benchmarks (Kaggle).",
+        "Phase 3 (Months 7–9): Integrate GSM and GPS for offline SMS broadcasting.",
+        "Phase 4 (Months 10–12): Perform end-to-end impact simulation and cloud notification testing."
+      ]
+    },
+    {
+      "title": "AquaSense: Smart Water Monitoring",
+      "category": "Embedded IoT & Telematics",
+      "source": "Big Ideas",
+      "reference": "Big Ideas ID 165 (AquaSense)",
+      "description": "An ultrasonic IoT node mounted on a residential water tank that tracks the water level, detects leakage anomalies and forecasts refill dates with time-series models.",
+      "hardware_components": "ESP32 Wi-Fi NodeMCU (~200 EGP), JSN-SR04T waterproof ultrasonic sensor (~180-220 EGP), estimated total ~380-450 EGP",
+      "team_tracks": [
+        "IoT Hardware Engineer: Mounts and calibrates the ultrasonic distance sensors.",
+        "Embedded Software Engineer: Manages Wi-Fi connections and MQTT data transmission.",
+        "Data Scientist: Develops time-series forecasting models for water consumption.",
+        "Backend Developer: Constructs the telemetry database and APIs.",
+        "Mobile App Developer: Builds the user dashboard and notification system."
+      ],
+      "potential_risks": "Ultrasonic sensor corrosion or malfunction due to the high humidity environment inside water tanks. The JSN-SR04T cannot measure very short distances (about 20-25 cm minimum), so mounting height must be planned",
+      "added_contribution": "Predictive analytics modeling historical consumption to automate water refill requests before full depletion occurs.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Integrate the sensor hardware and implement distance-to-volume math.",
+        "Phase 2 (Months 4–6): Establish wireless MQTT transmission to the cloud backend.",
+        "Phase 3 (Months 7–9): Train and compare forecasting models on public water-consumption time series (Kaggle and UCI).",
+        "Phase 4 (Months 10–12): Develop the mobile application and deploy the notification system."
+      ]
+    },
+    {
+      "title": "SmartMart / RecoMeal: Grocery & Meal Planning with Association Rules",
+      "category": "Data Mining & Recommenders",
+      "source": "Big Ideas",
+      "reference": "Big Ideas IDs 240 and 295 (SmartMart, RecoMeal)",
+      "description": "A retail and pantry optimization platform that applies data mining (association rule mining and collaborative filtering) to purchase histories to suggest pantry substitutes and recommend recipes based on the ingredients a user already has.",
+      "hardware_components": "software-based",
+      "team_tracks": [
+        "Data Mining Engineer: Runs Apriori and FP-Growth on the Instacart Market Basket dataset to find product association rules.",
+        "Recommender Engineer: Builds collaborative filtering and matrix factorization models (ALS or SVD).",
+        "NLP & Data Engineer: Parses RecipeNLG ingredient lines and builds the ingredient-to-recipe index and substitution rules.",
+        "Backend Developer: Builds the API for recommendations and pantry management.",
+        "Frontend Developer: Builds the pantry and meal-planner interface."
+      ],
+      "potential_risks": "Instacart and RecipeNLG reflect Western shopping and cooking, so recommendations may not match Egyptian meals and ingredients. Recipe ingredient text is messy and needs heavy normalization. New users have no history (cold start), so test users must be simulated from Instacart accounts.",
+      "added_contribution": "Pantry-aware recommendations: recipes are ranked by how many ingredients the user already has, and missing items are filled with substitutes mined from association rules, which also helps reduce food waste.",
+      "steps_to_goal": [
+        "Phase 1 (Months 1–3): Download Instacart and RecipeNLG and clean and normalize the data.",
+        "Phase 2 (Months 4–6): Mine association rules and train the recommendation models.",
+        "Phase 3 (Months 7–9): Build the pantry-aware recipe ranking and substitution logic.",
+        "Phase 4 (Months 10–12): Build the web or mobile interface, evaluate recommendations and write the final report."
+      ]
+    }
+  ]
+}
