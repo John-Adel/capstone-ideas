@@ -1,0 +1,264 @@
+{
+  "capstone_projects": [
+    {
+      "title": "Driver Monitoring System (DMS)",
+      "description": "An edge-AI computer vision system analyzing driver facial landmarks to detect fatigue, distraction, and unsafe postures in real-time[cite: 12, 14, 15, 16].",
+      "hardware_components": "Raspberry Pi 4, Infrared (IR) Camera Module, 5V Active Buzzer, OLED Display[cite: 12, 14].",
+      "team_tracks": [
+        "Edge AI Engineer: Trains and quantizes CNN models for embedded CPU inference[cite: 14, 16].",
+        "Embedded Systems Engineer: Sets up Linux environment and GPIO hardware actuators[cite: 14, 16].",
+        "Computer Vision Engineer: Implements MediaPipe/OpenCV pipelines for facial landmark geometry[cite: 14, 16].",
+        "Backend IoT Developer: Configures MQTT brokers and FastAPI data ingestion[cite: 14, 16].",
+        "Frontend Developer: Builds the React telematics dashboard for live tracking[cite: 14, 16]."
+      ],
+      "potential_risks": "False positive alerts caused by dynamic facial morphology changes or severe illumination drops during night driving[cite: 12, 14].",
+      "added_contribution": "Offline-resilient fleet telematics architecture combined with an adaptive dynamic baseline calibration for individual driver eye geometry[cite: 14, 16].",
+      "steps_to_goal": [
+        "Phase 1: Setup environment and benchmark public driver datasets[cite: 12, 14].",
+        "Phase 2: Develop facial landmark geometry logic and quantize classification models[cite: 14, 16].",
+        "Phase 3: Assemble hardware components and test local actuation latency[cite: 14, 16].",
+        "Phase 4: Integrate cloud telemetry and conduct in-vehicle field testing[cite: 14, 16]."
+      ]
+    },
+    {
+      "title": "Road Guard (Wild Alert): Highway Hazard Detection",
+      "description": "A real-time dashcam computer vision pipeline designed to detect sudden road hazards and large animals on unlit highways to prevent accidents[cite: 11].",
+      "hardware_components": "Raspberry Pi 4, standard 1080p USB Camera or PiCam[cite: 11].",
+      "team_tracks": [
+        "Deep Learning Engineer: Trains YOLO object detection models on large mammal datasets[cite: 11].",
+        "Edge Optimization Lead: Converts models to ONNX/TFLite for low-latency inference[cite: 11].",
+        "Embedded Linux Engineer: Handles camera streams and system runtime stability[cite: 11].",
+        "Backend/Telemetry Developer: Builds the incident reporting API[cite: 11].",
+        "Data Analyst: Develops statistical dashboards for road security personnel[cite: 11]."
+      ],
+      "potential_risks": "Motion blur at high vehicle speeds and low visibility during night driving causing missed detections[cite: 11].",
+      "added_contribution": "Instantaneous bounding-box expansion calculation to estimate time-to-collision and trigger preemptive alarms[cite: 11].",
+      "steps_to_goal": [
+        "Phase 1: Curate datasets for large animals and highway hazards[cite: 11].",
+        "Phase 2: Train the YOLO detection model and optimize for edge hardware[cite: 11].",
+        "Phase 3: Wire in-cabin alerting hardware and integrate inference engine[cite: 11].",
+        "Phase 4: Deploy the reporting dashboard and perform physical road tests[cite: 11]."
+      ]
+    },
+    {
+      "title": "PlantPal / Farmer Eye: Smart Crops Health Detection",
+      "description": "An edge-assisted system diagnosing crop foliar diseases from images and dynamically scheduling irrigation and care notifications[cite: 11, 14].",
+      "hardware_components": "ESP32-CAM, DHT22 Temperature & Humidity Sensor, 5V Power Bank (or software-based mobile mode)[cite: 11, 14].",
+      "team_tracks": [
+        "Deep Learning Engineer: Implements lightweight transfer learning models[cite: 11, 14].",
+        "Computer Vision Engineer: Handles image segmentation and background noise removal[cite: 11, 14].",
+        "Embedded IoT Engineer: Writes microcontroller firmware for sensor and camera triggering[cite: 14].",
+        "Backend API Architect: Manages the diagnosis database and advisory rules[cite: 11].",
+        "Mobile App Developer: Builds the farmer-facing UI and notification system[cite: 11]."
+      ],
+      "potential_risks": "Model overfitting to laboratory image backgrounds instead of recognizing actual plant lesions[cite: 11, 14].",
+      "added_contribution": "Integration of Explainable AI (XAI) to visually highlight diseased regions, paired with automated severity-based agronomic treatments[cite: 11, 14].",
+      "steps_to_goal": [
+        "Phase 1: Acquire and clean public plant pathology datasets[cite: 11, 14].",
+        "Phase 2: Train and optimize the diagnostic classification networks[cite: 11, 14].",
+        "Phase 3: Integrate IoT environmental sensors and backend logic[cite: 14].",
+        "Phase 4: Develop the mobile application and validate in real-world agricultural settings[cite: 11, 14]."
+      ]
+    },
+    {
+      "title": "Mateen / SmartCoach: AI-Powered Sports Training",
+      "description": "A mobile computer vision application that identifies gym equipment, maps workout routines, and tracks repetition form using skeletal pose estimation[cite: 11, 15].",
+      "hardware_components": "software-based[cite: 11, 15].",
+      "team_tracks": [
+        "Deep Learning Engineer: Trains object detection models for gym equipment[cite: 11].",
+        "Pose Estimation Engineer: Calculates skeletal joint kinematics[cite: 11, 15].",
+        "Mobile Developer: Integrates live camera feeds into a cross-platform app[cite: 11].",
+        "Backend Developer: Manages workout profiles and video tutorial databases[cite: 11].",
+        "QA & Testing Lead: Conducts live environment testing and handles deployment[cite: 11]."
+      ],
+      "potential_risks": "Occlusion of body parts by gym equipment and complex visual clutter in background environments[cite: 11].",
+      "added_contribution": "Real-time biomechanical angle calculation to actively prevent workout injuries and correct form[cite: 11, 15].",
+      "steps_to_goal": [
+        "Phase 1: Collect and label gym equipment datasets[cite: 11].",
+        "Phase 2: Develop the equipment identification pipeline[cite: 11].",
+        "Phase 3: Implement pose estimation geometry for form tracking[cite: 11, 15].",
+        "Phase 4: Integrate the UI and conduct user acceptance testing in physical gyms[cite: 11]."
+      ]
+    },
+    {
+      "title": "Smart Vision: Intelligent Attendance System with Anti-Spoofing",
+      "description": "An automated classroom attendance system using facial biometric identification coupled with a liveness detection engine to prevent presentation attacks[cite: 15, 17].",
+      "hardware_components": "software-based (integrates with existing IP cameras or webcams)[cite: 15, 17].",
+      "team_tracks": [
+        "Face Detection Engineer: Manages multi-face extraction and geometric alignment[cite: 15, 17].",
+        "Security AI Engineer: Trains liveness models for passive anti-spoofing[cite: 15].",
+        "Metric Learning Architect: Configures vector embeddings and nearest-neighbor search[cite: 15].",
+        "Backend Systems Engineer: Builds the attendance ledger and API[cite: 15, 17].",
+        "Frontend Developer: Creates the instructor reporting dashboard[cite: 15, 17]."
+      ],
+      "potential_risks": "Spoofing attempts utilizing high-resolution digital screens, masks, or printed photographs[cite: 15].",
+      "added_contribution": "Implementation of frequency domain analysis to detect digital screen moiré patterns for robust anti-spoofing verification[cite: 15].",
+      "steps_to_goal": [
+        "Phase 1: Implement face alignment and bounding box extraction[cite: 15, 17].",
+        "Phase 2: Generate facial vector embeddings and set up the indexing database[cite: 15].",
+        "Phase 3: Train liveness detection models on spoofing benchmark datasets[cite: 15].",
+        "Phase 4: Connect the backend ledger to the frontend dashboard and optimize streaming latency[cite: 15, 17]."
+      ]
+    },
+    {
+      "title": "Live Stream Sign Language Application in Arabic",
+      "description": "A bidirectional computer vision platform extracting spatial-temporal gesture kinematics to translate Arabic Sign Language to text/speech and vice versa[cite: 16].",
+      "hardware_components": "software-based[cite: 16].",
+      "team_tracks": [
+        "Kinematics Vision Engineer: Extracts 3D skeletal landmarks from video frames[cite: 16].",
+        "Temporal ML Engineer: Builds recurrent sequence networks for gesture classification[cite: 16].",
+        "Arabic NLP Engineer: Implements grammar smoothing and text-to-speech[cite: 16].",
+        "Backend Gateway Architect: Manages bidirectional streaming sockets[cite: 16].",
+        "Frontend Developer: Builds the UI and manages 3D avatar rendering for reverse translation[cite: 16]."
+      ],
+      "potential_risks": "High variability in human signing speeds and dialectal differences within Arabic sign languages[cite: 16].",
+      "added_contribution": "Continuous dynamic vocabulary recognition utilizing velocity thresholding instead of relying on static alphabet fingerspelling[cite: 16].",
+      "steps_to_goal": [
+        "Phase 1: Ingest video frames and normalize 3D joint coordinates[cite: 16].",
+        "Phase 2: Train sequence models using benchmark Arabic Sign Language datasets[cite: 16].",
+        "Phase 3: Apply NLP grammar smoothing to translate glosses into coherent sentences[cite: 16].",
+        "Phase 4: Develop the bidirectional user interface and perform live translation tests[cite: 16]."
+      ]
+    },
+    {
+      "title": "Safe Exam Browser using AI Proctoring",
+      "description": "An automated academic integrity desktop client combining low-level OS kiosk lockdown with local, multi-modal AI to monitor remote exams[cite: 16].",
+      "hardware_components": "software-based[cite: 16].",
+      "team_tracks": [
+        "Desktop Security Lead: Implements OS sandboxing and shortcut blocking[cite: 16].",
+        "Vision Engineer: Integrates head pose and gaze vector tracking[cite: 16].",
+        "Object Detection Engineer: Deploys lightweight models to detect unauthorized devices[cite: 16].",
+        "Acoustic DSP Engineer: Implements voice activity detection for ambient noise[cite: 16].",
+        "Full-Stack Architect: Builds the telemetry backend and instructor review portal[cite: 16]."
+      ],
+      "potential_risks": "High false-positive flagging rates penalizing students for natural body movements or irrelevant background noises[cite: 16].",
+      "added_contribution": "A multi-modal temporal risk fusion engine utilizing exponential moving averages to suppress momentary tracking glitches[cite: 16].",
+      "steps_to_goal": [
+        "Phase 1: Build the desktop shell isolation to block external applications[cite: 16].",
+        "Phase 2: Integrate on-device gaze, posture, and object detection AI[cite: 16].",
+        "Phase 3: Develop the audio analysis and temporal risk fusion algorithms[cite: 16].",
+        "Phase 4: Deploy the secure telemetry pipeline and live instructor dashboard[cite: 16]."
+      ]
+    },
+    {
+      "title": "Tibyan / AI-Powered News Classifier: Fake News Detector",
+      "description": "An NLP engine that verifies Arabic news articles and social media claims using machine learning to combat digital misinformation[cite: 11, 12].",
+      "hardware_components": "software-based[cite: 11, 12].",
+      "team_tracks": [
+        "Data Engineer: Handles web scraping and corpus cleaning[cite: 11].",
+        "NLP Architect: Fine-tunes transformer models for Arabic text classification[cite: 11].",
+        "Semantic Search Engineer: Manages vector embeddings for claim matching[cite: 12].",
+        "Backend API Developer: Connects the machine learning models to the web endpoints[cite: 11].",
+        "Frontend UI Developer: Builds the user-facing verification dashboard or browser extension[cite: 11]."
+      ],
+      "potential_risks": "The rapid evolution of fake news terminology and a scarcity of high-quality labeled Arabic datasets[cite: 11, 12].",
+      "added_contribution": "Multi-feature credibility analysis combining stylistic text evaluation with semantic source retrieval[cite: 11, 12].",
+      "steps_to_goal": [
+        "Phase 1: Aggregate and preprocess Arabic fake news benchmark corpora[cite: 11, 12].",
+        "Phase 2: Fine-tune Arabic transformer architectures for text classification[cite: 11].",
+        "Phase 3: Implement the claim retrieval and semantic similarity scoring pipeline[cite: 12].",
+        "Phase 4: Deploy the web verification portal for public access[cite: 11]."
+      ]
+    },
+    {
+      "title": "MedSmart: Pharmacy Companion & Medication Safety",
+      "description": "A mobile health application utilizing OCR and barcode scanning to track medications, schedule reminders, and flag potential drug interactions[cite: 11].",
+      "hardware_components": "software-based[cite: 11].",
+      "team_tracks": [
+        "Computer Vision Engineer: Develops OCR and barcode parsing pipelines[cite: 11].",
+        "NLP Data Engineer: Manages medical lexicons and fuzzy string matching[cite: 11].",
+        "Mobile Application Developer: Builds the cross-platform application interface[cite: 11].",
+        "Backend Database Architect: Designs the medication ledger and user profiles[cite: 11].",
+        "Systems Integrator: Manages API communication and health data security[cite: 11]."
+      ],
+      "potential_risks": "Misidentifying medication names due to poor camera focus or reading complex Arabic prescription fonts[cite: 11].",
+      "added_contribution": "Automated contraindication alerts that cross-reference user intake with clinical APIs to prevent harmful chemical interactions[cite: 11].",
+      "steps_to_goal": [
+        "Phase 1: Compile and sanitize local pharmacological drug databases[cite: 11].",
+        "Phase 2: Implement image text extraction and fuzzy string matching[cite: 11].",
+        "Phase 3: Build the contraindication logic and medication reminder scheduler[cite: 11].",
+        "Phase 4: Develop the mobile user interface and perform accessibility testing[cite: 11]."
+      ]
+    },
+    {
+      "title": "Auto-Alert: Car Crash Detection & Telematics",
+      "description": "An embedded vehicle telemetry system detecting severe crash impacts and immediately broadcasting GPS coordinates to emergency services[cite: 11].",
+      "hardware_components": "ESP32 NodeMCU, MPU6050 Accelerometer/Gyroscope, GY-NEO6MV2 GPS Module, SIM800L GSM Module[cite: 11].",
+      "team_tracks": [
+        "Embedded C++ Developer: Programs the sensor interfacing and data polling[cite: 11].",
+        "Algorithm Engineer: Designs the kinematic threshold filters for impact detection[cite: 11].",
+        "Hardware Assembly Lead: Manages circuit wiring, power regulation, and physical enclosure[cite: 11].",
+        "Cloud Backend Engineer: Builds the webhook receivers for emergency broadcasts[cite: 11].",
+        "Mobile/Web Dashboard Developer: Creates the interface for emergency responders[cite: 11]."
+      ],
+      "potential_risks": "False positive alerts triggered by sudden braking or speed bumps rather than actual collisions[cite: 11].",
+      "added_contribution": "Multi-axis sensor fusion filtering designed to distinguish non-critical driving anomalies from life-threatening rollovers[cite: 11].",
+      "steps_to_goal": [
+        "Phase 1: Procure hardware components and conduct individual module testing[cite: 11].",
+        "Phase 2: Log IMU data and calibrate the threshold impact algorithms[cite: 11].",
+        "Phase 3: Integrate GSM and GPS for offline SMS broadcasting[cite: 11].",
+        "Phase 4: Perform end-to-end impact simulation and cloud notification testing[cite: 11]."
+      ]
+    },
+    {
+      "title": "AquaSense: Smart Water Monitoring",
+      "description": "An IoT-based application tracking residential tank water levels, detecting anomalies, and predicting future refill requirements[cite: 11].",
+      "hardware_components": "ESP32 NodeMCU, Waterproof Ultrasonic Sensor[cite: 11].",
+      "team_tracks": [
+        "IoT Hardware Engineer: Mounts and calibrates the ultrasonic distance sensors[cite: 11].",
+        "Embedded Software Engineer: Manages Wi-Fi connections and MQTT data transmission[cite: 11].",
+        "Data Scientist: Develops time-series forecasting models for water consumption[cite: 11].",
+        "Backend Developer: Constructs the telemetry database and APIs[cite: 11].",
+        "Mobile App Developer: Builds the user dashboard and notification system[cite: 11]."
+      ],
+      "potential_risks": "Ultrasonic sensor corrosion or malfunction due to the high humidity environment inside water tanks[cite: 11].",
+      "added_contribution": "Predictive analytics modeling historical consumption to automate water refill requests before full depletion occurs[cite: 11].",
+      "steps_to_goal": [
+        "Phase 1: Integrate the sensor hardware and implement distance-to-volume math[cite: 11].",
+        "Phase 2: Establish wireless MQTT transmission to the cloud backend[cite: 11].",
+        "Phase 3: Implement machine learning forecasting on historical data[cite: 11].",
+        "Phase 4: Develop the mobile application and deploy the notification system[cite: 11]."
+      ]
+    },
+    {
+      "title": "AI-Enhanced System for Design Excellence",
+      "description": "A generative AI system that intelligently recolors interior design elements while preserving lighting, textures, and shadows[cite: 14].",
+      "hardware_components": "software-based[cite: 14].",
+      "team_tracks": [
+        "Vision Engineer: Implements zero-shot object segmentation models[cite: 14].",
+        "Generative AI Lead: Fine-tunes conditional generative networks and diffusion models[cite: 14].",
+        "Backend Systems Architect: Manages asynchronous GPU cloud processing queues[cite: 14].",
+        "Frontend Developer: Builds the interactive drag-and-drop web canvas[cite: 14].",
+        "QA & Color Theory Integrator: Tests aesthetic outputs and logic constraints[cite: 14]."
+      ],
+      "potential_risks": "High cloud computing costs during GPU inference and unacceptable latency times in generating images[cite: 14].",
+      "added_contribution": "Preserving photorealistic environment lighting and shadows during semantic color swaps instead of applying flat color tints[cite: 14].",
+      "steps_to_goal": [
+        "Phase 1: Implement zero-shot object segmentation pipelines[cite: 14].",
+        "Phase 2: Fine-tune conditional generative networks for color transfer[cite: 14].",
+        "Phase 3: Develop asynchronous processing queues for the backend[cite: 14].",
+        "Phase 4: Construct the interactive frontend and conduct user testing[cite: 14]."
+      ]
+    },
+    {
+      "title": "ECO-SORT: Smart Recycling Assistant",
+      "description": "A computer vision terminal that identifies and categorizes physical waste into plastic, paper, or metal to streamline recycling workflows[cite: 16].",
+      "hardware_components": "Raspberry Pi 4, USB Webcam, Servo Motors, Custom Enclosure Chassis[cite: 16].",
+      "team_tracks": [
+        "Computer Vision Engineer: Trains object detection models on waste datasets[cite: 16].",
+        "Embedded Systems Lead: Programs microcontroller logic for servo actuation[cite: 16].",
+        "Mechanical Integrator: Assembles the physical sorting chutes and chassis[cite: 16].",
+        "Cloud Data Engineer: Builds the analytics dashboard and ledger backend[cite: 16].",
+        "Mobile UI Developer: Creates the gamified user points application[cite: 16]."
+      ],
+      "potential_risks": "Deformed or crushed items confusing the classification model; mechanical jamming in the physical sorting chutes[cite: 16].",
+      "added_contribution": "An automated physical sorting gate synced with AI classification, coupled with a gamified rewards ledger to incentivize users[cite: 16].",
+      "steps_to_goal": [
+        "Phase 1: Train and optimize detection models using open waste datasets[cite: 16].",
+        "Phase 2: Develop microcontroller logic for the sorting mechanisms[cite: 16].",
+        "Phase 3: Integrate the cloud ledger for user reward points[cite: 16].",
+        "Phase 4: Assemble the physical chassis and perform mechanical stress testing[cite: 16]."
+      ]
+    }
+  ]
+}
